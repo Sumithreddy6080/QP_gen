@@ -1,19 +1,13 @@
-import mongoose from "mongoose";
-import "dotenv/config";
+import mongoose from 'mongoose';
 
 const connectDB = async () => {
-
-    try{
-        mongoose.connection.on("connected", () => {
-            console.log("DB connected");
+        // Listen for the connected event
+        mongoose.connection.on('connected', () => {
+            console.log('MongoDB Connected successfully');
         });
-        await mongoose.connect(`${process.env.MONGO_URI}/question-paper-generator`);
-      
 
-    }catch(err){
-        console.log(err);
-    }
-  
+        // Connect to the database using the connection string from environment variables
+        await mongoose.connect(`${process.env.MONGODB_URL}/question-paper`)
 
 };
 
